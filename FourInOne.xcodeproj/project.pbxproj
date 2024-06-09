@@ -8,17 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		047D6C872C15D461005E4154 /* FourInOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D6C862C15D461005E4154 /* FourInOneApp.swift */; };
-		047D6C892C15D461005E4154 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D6C882C15D461005E4154 /* ContentView.swift */; };
 		047D6C8B2C15D463005E4154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8A2C15D463005E4154 /* Assets.xcassets */; };
 		047D6C8E2C15D464005E4154 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8D2C15D464005E4154 /* Preview Assets.xcassets */; };
+		048E16BF2C15D572007CED04 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E16BE2C15D572007CED04 /* MainView.swift */; };
+		048E16C82C15D950007CED04 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E16C72C15D950007CED04 /* MainCoordinator.swift */; };
+		048E16CB2C15D96C007CED04 /* Component in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16CA2C15D96C007CED04 /* Component */; };
+		048E16CD2C15D970007CED04 /* Router in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16CC2C15D970007CED04 /* Router */; };
+		048E16CF2C15D998007CED04 /* MainBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048E16CE2C15D998007CED04 /* MainBuilder.swift */; };
+		048E16D32C15DBA7007CED04 /* Azon in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16D22C15DBA7007CED04 /* Azon */; };
+		048E16D52C15DBAB007CED04 /* CoreModel in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16D42C15DBAB007CED04 /* CoreModel */; };
+		048E16D82C16080F007CED04 /* News in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16D72C16080F007CED04 /* News */; };
+		048E16DB2C16099E007CED04 /* Weather in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16DA2C16099E007CED04 /* Weather */; };
+		048E16DE2C160B32007CED04 /* Movie in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16DD2C160B32007CED04 /* Movie */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		047D6C832C15D461005E4154 /* FourInOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047D6C862C15D461005E4154 /* FourInOneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInOneApp.swift; sourceTree = "<group>"; };
-		047D6C882C15D461005E4154 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		047D6C8A2C15D463005E4154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		047D6C8D2C15D464005E4154 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		048E16BE2C15D572007CED04 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		048E16C52C15D67C007CED04 /* Component */ = {isa = PBXFileReference; lastKnownFileType = text; path = Component; sourceTree = SOURCE_ROOT; };
+		048E16C62C15D86F007CED04 /* Router */ = {isa = PBXFileReference; lastKnownFileType = text; path = Router; sourceTree = SOURCE_ROOT; };
+		048E16C72C15D950007CED04 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		048E16CE2C15D998007CED04 /* MainBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBuilder.swift; sourceTree = "<group>"; };
+		048E16D02C15DA3F007CED04 /* Azon */ = {isa = PBXFileReference; lastKnownFileType = text; path = Azon; sourceTree = SOURCE_ROOT; };
+		048E16D12C15DB90007CED04 /* CoreModel */ = {isa = PBXFileReference; lastKnownFileType = text; path = CoreModel; sourceTree = SOURCE_ROOT; };
+		048E16D62C16068A007CED04 /* News */ = {isa = PBXFileReference; lastKnownFileType = text; path = News; sourceTree = SOURCE_ROOT; };
+		048E16D92C160891007CED04 /* Weather */ = {isa = PBXFileReference; lastKnownFileType = text; path = Weather; sourceTree = SOURCE_ROOT; };
+		048E16DC2C160A22007CED04 /* Movie */ = {isa = PBXFileReference; lastKnownFileType = text; path = Movie; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +44,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				048E16CB2C15D96C007CED04 /* Component in Frameworks */,
+				048E16D32C15DBA7007CED04 /* Azon in Frameworks */,
+				048E16DE2C160B32007CED04 /* Movie in Frameworks */,
+				048E16D82C16080F007CED04 /* News in Frameworks */,
+				048E16DB2C16099E007CED04 /* Weather in Frameworks */,
+				048E16CD2C15D970007CED04 /* Router in Frameworks */,
+				048E16D52C15DBAB007CED04 /* CoreModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +60,11 @@
 		047D6C7A2C15D461005E4154 = {
 			isa = PBXGroup;
 			children = (
+				048E16C32C15D5DE007CED04 /* Components */,
+				048E16C22C15D5D7007CED04 /* Feature */,
 				047D6C852C15D461005E4154 /* FourInOne */,
 				047D6C842C15D461005E4154 /* Products */,
+				048E16C92C15D96C007CED04 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -52,7 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				047D6C862C15D461005E4154 /* FourInOneApp.swift */,
-				047D6C882C15D461005E4154 /* ContentView.swift */,
+				048E16C42C15D63B007CED04 /* Main */,
 				047D6C8A2C15D463005E4154 /* Assets.xcassets */,
 				047D6C8C2C15D464005E4154 /* Preview Content */,
 			);
@@ -65,6 +93,44 @@
 				047D6C8D2C15D464005E4154 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		048E16C22C15D5D7007CED04 /* Feature */ = {
+			isa = PBXGroup;
+			children = (
+				048E16DC2C160A22007CED04 /* Movie */,
+				048E16D92C160891007CED04 /* Weather */,
+				048E16D62C16068A007CED04 /* News */,
+				048E16D02C15DA3F007CED04 /* Azon */,
+			);
+			path = Feature;
+			sourceTree = "<group>";
+		};
+		048E16C32C15D5DE007CED04 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				048E16D12C15DB90007CED04 /* CoreModel */,
+				048E16C62C15D86F007CED04 /* Router */,
+				048E16C52C15D67C007CED04 /* Component */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		048E16C42C15D63B007CED04 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				048E16BE2C15D572007CED04 /* MainView.swift */,
+				048E16C72C15D950007CED04 /* MainCoordinator.swift */,
+				048E16CE2C15D998007CED04 /* MainBuilder.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		048E16C92C15D96C007CED04 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +149,15 @@
 			dependencies = (
 			);
 			name = FourInOne;
+			packageProductDependencies = (
+				048E16CA2C15D96C007CED04 /* Component */,
+				048E16CC2C15D970007CED04 /* Router */,
+				048E16D22C15DBA7007CED04 /* Azon */,
+				048E16D42C15DBAB007CED04 /* CoreModel */,
+				048E16D72C16080F007CED04 /* News */,
+				048E16DA2C16099E007CED04 /* Weather */,
+				048E16DD2C160B32007CED04 /* Movie */,
+			);
 			productName = FourInOne;
 			productReference = 047D6C832C15D461005E4154 /* FourInOne.app */;
 			productType = "com.apple.product-type.application";
@@ -137,8 +212,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				047D6C892C15D461005E4154 /* ContentView.swift in Sources */,
+				048E16C82C15D950007CED04 /* MainCoordinator.swift in Sources */,
+				048E16BF2C15D572007CED04 /* MainView.swift in Sources */,
 				047D6C872C15D461005E4154 /* FourInOneApp.swift in Sources */,
+				048E16CF2C15D998007CED04 /* MainBuilder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,6 +357,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -309,6 +387,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -344,6 +423,37 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		048E16CA2C15D96C007CED04 /* Component */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Component;
+		};
+		048E16CC2C15D970007CED04 /* Router */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Router;
+		};
+		048E16D22C15DBA7007CED04 /* Azon */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Azon;
+		};
+		048E16D42C15DBAB007CED04 /* CoreModel */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = CoreModel;
+		};
+		048E16D72C16080F007CED04 /* News */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = News;
+		};
+		048E16DA2C16099E007CED04 /* Weather */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Weather;
+		};
+		048E16DD2C160B32007CED04 /* Movie */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Movie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 047D6C7B2C15D461005E4154 /* Project object */;
 }

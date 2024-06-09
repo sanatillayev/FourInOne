@@ -11,7 +11,9 @@ import SwiftUI
 struct FourInOneApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationStack {
+                MainBuilder.createMainView(selectedTabSection: .azon)
+            }
         }
     }
 }
