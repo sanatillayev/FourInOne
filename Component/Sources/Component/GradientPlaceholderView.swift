@@ -23,12 +23,12 @@ struct GradientProgressEffect: AnimatableModifier {
             LinearGradient(
                 stops: [
                     Gradient.Stop(color: Color(red: 0.47, green: 0.47, blue: 0.47).opacity(0.2), location: 0.00),
-                    Gradient.Stop(color: Color.secondary.opacity(0.1), location: position - 0.05),
-                    Gradient.Stop(color: Color.secondary.opacity(0.1), location: position + 0.05),
+                    Gradient.Stop(color: Color.primary.opacity(0.4), location: position - 0.05),
+                    Gradient.Stop(color: Color.primary.opacity(0.4), location: position + 0.05),
                     Gradient.Stop(color: Color(red: 0.47, green: 0.47, blue: 0.47).opacity(0.2), location: 1.00)
                 ],
-                startPoint: .leading,
-                endPoint: .trailing
+                startPoint: .topLeading,
+                endPoint: .bottomTrailing
             )
             .padding(.horizontal, -40)
             .clipped()
