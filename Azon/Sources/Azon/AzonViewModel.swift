@@ -17,15 +17,13 @@ final class AzonViewModel: ObservableObject {
     let action = PassthroughSubject<Action, Never>()
     
     // MARK: Private properties
-
     private let worker: AnyAzonWorker
     private var cancellables = Set<AnyCancellable>()
     
     // MARK: Init
-
     init(worker: AnyAzonWorker) {
         self.worker = worker
-        
+        loadNotificationState()
         action
             .sink(receiveValue: { [unowned self] in
                 self.didChange($0)
@@ -34,35 +32,50 @@ final class AzonViewModel: ObservableObject {
     }
     
     // MARK: Private Methods
-
     private func didChange(_ action: Action) {
         switch action {
-        case .fetchOffers:
+        case .fetchData:
             break
-        case .setFrom(let text):
-            state.fromText = text
-        case .setWhere(let text):
-            state.whereText = text
+        case .requestNotification:
+            requestAuth()
+        case .scheduleNotification:
+            scheduleNotifications()
         }
     }
     
-//    private func fetchOffers() {
-//        state.isLoading = true
-//        worker.fetchOffers()
-//            .receive(on: DispatchQueue.main)
-//            .sink(receiveCompletion: { [weak self] completion in
-//                switch completion {
-//                case .finished:
-//                    break
-//                case .failure(let error):
-//                    print("Error while fetching hotel data: \(error)")
-//                    self?.state.isLoading = false
-//                }
-//            }, receiveValue: { [weak self] model in
-//                self?.state.offers = model.offers.map({ $0.getOffer() })
-//            })
-//            .store(in: &cancellables)
-//    }
+    private func scheduleNotifications() {
+        if !state.didSetNotification {
+            for i in state.times.indices {
+                NotificationManager.shared.scheduleNotification(at: state.times[i], title: state.names[i], body: "\(state.times[i].toString()) It's time for prayer.")
+            }
+            state.didSetNotification = true
+            saveNotificationState()
+        }
+    }
+    
+    private func requestAuth() {
+        if !state.didAuthNotification {
+            NotificationManager.shared.requestAuthorization()
+            state.didAuthNotification = true
+            UserDefaults.standard.set(state.didAuthNotification, forKey: state.authKey)
+        }
+    }
+    
+    private func saveNotificationState() {
+        UserDefaults.standard.set(state.didSetNotification, forKey: state.setKey)
+    }
+    
+///      - To test notification:   uncomment ```state.didSetNotification = false```
+///      And add your notification time below inside `State` in `var times: [DateComponents]`
+///      Note that when you uncomment this section the notificaions might be duplicated several times
+    private func loadNotificationState() {
+        UserDefaults.standard.removeObject(forKey: "didSetNotification")
+        UserDefaults.standard.removeObject(forKey: "didAuthNotification")
+        state.didAuthNotification = UserDefaults.standard.bool(forKey: state.authKey)
+        state.didSetNotification = UserDefaults.standard.bool(forKey: state.setKey)
+        
+        //state.didSetNotification = false
+    }
 }
 
 // MARK: - ViewModel Actions & State
@@ -70,17 +83,35 @@ final class AzonViewModel: ObservableObject {
 extension AzonViewModel {
     
     enum Action {
-        case fetchOffers
-        case setWhere(String)
-        case setFrom(String)
+        case fetchData
+        case requestNotification
+        case scheduleNotification
     }
     
     struct State {
         var isLoading = false
-        var offers: [String] = []
-        let images: [String] = ["Image1","Image2","Image3"]
-        var fromText: String = ""
-        var whereText: String = ""
+        var didSetNotification = false
+        var didAuthNotification = false
+        let setKey = "didSetNotificatio"
+        let authKey = "didAuthNotificatio"
+        var times: [DateComponents] = [
+            DateComponents(hour: 5, minute: 0),
+            DateComponents(hour: 13, minute: 0),
+            DateComponents(hour: 16, minute: 35),
+            DateComponents(hour: 16, minute: 40),
+            DateComponents(hour: 16, minute: 45)
+        ]
+        let names: [String] = ["Fajr","Dhuhr","Asr","Maghrib","Isha"]
     }
 }
 
+extension DateComponents {
+    func toString() -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        var calendar = Calendar.current
+        calendar.timeZone = TimeZone.current
+        let date = calendar.date(from: self) ?? Date()
+        return formatter.string(from: date)
+    }
+}

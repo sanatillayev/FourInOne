@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0442AA452C1DB140006953D9 /* azanShort.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0442AA442C1DB140006953D9 /* azanShort.m4a */; };
 		047D6C872C15D461005E4154 /* FourInOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D6C862C15D461005E4154 /* FourInOneApp.swift */; };
 		047D6C8B2C15D463005E4154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8A2C15D463005E4154 /* Assets.xcassets */; };
 		047D6C8E2C15D464005E4154 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8D2C15D464005E4154 /* Preview Assets.xcassets */; };
@@ -26,6 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0442AA442C1DB140006953D9 /* azanShort.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = azanShort.m4a; sourceTree = "<group>"; };
 		047D6C832C15D461005E4154 /* FourInOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047D6C862C15D461005E4154 /* FourInOneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInOneApp.swift; sourceTree = "<group>"; };
 		047D6C8A2C15D463005E4154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			children = (
 				047D6C862C15D461005E4154 /* FourInOneApp.swift */,
 				048E16C42C15D63B007CED04 /* Main */,
+				0442AA442C1DB140006953D9 /* azanShort.m4a */,
 				047D6C8A2C15D463005E4154 /* Assets.xcassets */,
 				047D6C8C2C15D464005E4154 /* Preview Content */,
 			);
@@ -127,9 +130,9 @@
 		048E16C42C15D63B007CED04 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				048E16CE2C15D998007CED04 /* MainBuilder.swift */,
 				048E16BE2C15D572007CED04 /* MainView.swift */,
 				048E16C72C15D950007CED04 /* MainCoordinator.swift */,
-				048E16CE2C15D998007CED04 /* MainBuilder.swift */,
 				04961ED02C1B7C3F009AA214 /* AppDelegate.swift */,
 				04961ED22C1B7C77009AA214 /* SceneDelegate.swift */,
 			);
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				047D6C8E2C15D464005E4154 /* Preview Assets.xcassets in Resources */,
+				0442AA452C1DB140006953D9 /* azanShort.m4a in Resources */,
 				047D6C8B2C15D463005E4154 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -366,7 +370,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FourInOne/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KC9TW94N9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use this feature app need to acces your location";
@@ -399,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FourInOne/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = KC9TW94N9S;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use this feature app need to acces your location";

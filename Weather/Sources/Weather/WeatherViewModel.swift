@@ -86,7 +86,7 @@ extension WeatherViewModel {
     struct State {
         var isLoading = false
         var isUpdating = false
-        var weatherModel: WeatherModel?
+        var weatherModel: WeatherModel = .init(conditionId: 0, name: "", temp: 0, description: "")
     }
 }
 

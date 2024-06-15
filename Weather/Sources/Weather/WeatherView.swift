@@ -22,14 +22,6 @@ public struct WeatherView: View {
                 .environmentObject(locationManager)
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             cardView
-                .overlay {
-                    if viewModel.state.isLoading {
-                        LoadingView(text: "Loading...", color: .white)
-                            .cornerRadius(16)
-                            .padding(.horizontal, 16)
-                            .padding(.bottom, 8)
-                    }
-                }
         }
         .overlay(alignment: .center, content: {
             if viewModel.state.isLoading {
@@ -51,8 +43,14 @@ public struct WeatherView: View {
     
     @ViewBuilder
     private var cardView: some View {
-        if let model = viewModel.state.weatherModel {
-            CardView(model: model)
-        }
+        CardView(model: viewModel.state.weatherModel)
+            .overlay {
+                if viewModel.state.isLoading || viewModel.state.weatherModel.name == "" {
+                    LoadingView(text: "Loading...", color: .white)
+                        .cornerRadius(16)
+                        .padding(.horizontal, 16)
+                        .padding(.bottom, 8)
+                }
+            }
     }
 }

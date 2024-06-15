@@ -10,18 +10,11 @@ import Combine
 import CoreModel
 
 protocol AnyAzonWorker {
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error>
 }
 
 final class AzonWorker: AnyAzonWorker {
         
-    let offersURL = URL(string: "https://run.mocky.io/v3/214a1713-bac0-4853-907c-a1dfc3cd05fd")!
+    let azonURL = URL(string: "")
     
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error> {
-//        URLSession.shared.dataTaskPublisher(for: offersURL)
-//            .map(\.data)
-//            .decode(type: OfferModel.self, decoder: JSONDecoder())
-//            .eraseToAnyPublisher()
-//    }
 }
 

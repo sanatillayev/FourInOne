@@ -33,7 +33,7 @@ public struct NewsView: View {
             viewModel.action.send(.refresh)
         }
         .overlay {
-            if viewModel.state.isLoading {
+            if viewModel.state.isLoading || viewModel.state.articles.isEmpty {
                 LoadingView(text: "Loading...")
                     .onAppear {
                         viewModel.action.send(.fetchNews)
