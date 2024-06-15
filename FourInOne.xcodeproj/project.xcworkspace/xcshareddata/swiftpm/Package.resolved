@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "yandexmapsmobilelite",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/c-villain/YandexMapsMobileLite",
+      "state" : {
+        "revision" : "18e062427c5c0712504ac5787b15a9295481a3b3",
+        "version" : "4.6.1"
+      }
+    }
+  ],
+  "version" : 2
+}

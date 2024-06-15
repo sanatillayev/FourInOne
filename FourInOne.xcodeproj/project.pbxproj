@@ -20,6 +20,9 @@
 		048E16D82C16080F007CED04 /* News in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16D72C16080F007CED04 /* News */; };
 		048E16DB2C16099E007CED04 /* Weather in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16DA2C16099E007CED04 /* Weather */; };
 		048E16DE2C160B32007CED04 /* Movie in Frameworks */ = {isa = PBXBuildFile; productRef = 048E16DD2C160B32007CED04 /* Movie */; };
+		04961ED12C1B7C3F009AA214 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04961ED02C1B7C3F009AA214 /* AppDelegate.swift */; };
+		04961ED32C1B7C78009AA214 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04961ED22C1B7C77009AA214 /* SceneDelegate.swift */; };
+		04961ED52C1B7CD4009AA214 /* YandexMapWarepper in Frameworks */ = {isa = PBXBuildFile; productRef = 04961ED42C1B7CD4009AA214 /* YandexMapWarepper */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +40,9 @@
 		048E16D62C16068A007CED04 /* News */ = {isa = PBXFileReference; lastKnownFileType = text; path = News; sourceTree = SOURCE_ROOT; };
 		048E16D92C160891007CED04 /* Weather */ = {isa = PBXFileReference; lastKnownFileType = text; path = Weather; sourceTree = SOURCE_ROOT; };
 		048E16DC2C160A22007CED04 /* Movie */ = {isa = PBXFileReference; lastKnownFileType = text; path = Movie; sourceTree = SOURCE_ROOT; };
+		04961ECF2C1B7AB2009AA214 /* YandexMapWarepper */ = {isa = PBXFileReference; lastKnownFileType = text; path = YandexMapWarepper; sourceTree = SOURCE_ROOT; };
+		04961ED02C1B7C3F009AA214 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		04961ED22C1B7C77009AA214 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +56,7 @@
 				048E16D82C16080F007CED04 /* News in Frameworks */,
 				048E16DB2C16099E007CED04 /* Weather in Frameworks */,
 				048E16CD2C15D970007CED04 /* Router in Frameworks */,
+				04961ED52C1B7CD4009AA214 /* YandexMapWarepper in Frameworks */,
 				048E16D52C15DBAB007CED04 /* CoreModel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +116,7 @@
 		048E16C32C15D5DE007CED04 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				04961ECF2C1B7AB2009AA214 /* YandexMapWarepper */,
 				048E16D12C15DB90007CED04 /* CoreModel */,
 				048E16C62C15D86F007CED04 /* Router */,
 				048E16C52C15D67C007CED04 /* Component */,
@@ -122,6 +130,8 @@
 				048E16BE2C15D572007CED04 /* MainView.swift */,
 				048E16C72C15D950007CED04 /* MainCoordinator.swift */,
 				048E16CE2C15D998007CED04 /* MainBuilder.swift */,
+				04961ED02C1B7C3F009AA214 /* AppDelegate.swift */,
+				04961ED22C1B7C77009AA214 /* SceneDelegate.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -157,6 +167,7 @@
 				048E16D72C16080F007CED04 /* News */,
 				048E16DA2C16099E007CED04 /* Weather */,
 				048E16DD2C160B32007CED04 /* Movie */,
+				04961ED42C1B7CD4009AA214 /* YandexMapWarepper */,
 			);
 			productName = FourInOne;
 			productReference = 047D6C832C15D461005E4154 /* FourInOne.app */;
@@ -186,6 +197,9 @@
 				Base,
 			);
 			mainGroup = 047D6C7A2C15D461005E4154;
+			packageReferences = (
+				04961ECC2C1B7A73009AA214 /* XCRemoteSwiftPackageReference "YandexMapsMobileLite" */,
+			);
 			productRefGroup = 047D6C842C15D461005E4154 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -215,7 +229,9 @@
 				048E16C82C15D950007CED04 /* MainCoordinator.swift in Sources */,
 				048E16BF2C15D572007CED04 /* MainView.swift in Sources */,
 				047D6C872C15D461005E4154 /* FourInOneApp.swift in Sources */,
+				04961ED12C1B7C3F009AA214 /* AppDelegate.swift in Sources */,
 				048E16CF2C15D998007CED04 /* MainBuilder.swift in Sources */,
+				04961ED32C1B7C78009AA214 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,12 +362,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FourInOne/Preview Content\"";
-				DEVELOPMENT_TEAM = KC9TW94N9S;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use this feature app need to acces your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -365,6 +383,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanatillayev.FourInOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -376,12 +395,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FourInOne/Preview Content\"";
-				DEVELOPMENT_TEAM = KC9TW94N9S;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "To use this feature app need to acces your location";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -395,6 +416,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.sanatillayev.FourInOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -424,6 +446,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		04961ECC2C1B7A73009AA214 /* XCRemoteSwiftPackageReference "YandexMapsMobileLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/c-villain/YandexMapsMobileLite.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.6.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		048E16CA2C15D96C007CED04 /* Component */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -452,6 +485,10 @@
 		048E16DD2C160B32007CED04 /* Movie */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Movie;
+		};
+		04961ED42C1B7CD4009AA214 /* YandexMapWarepper */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = YandexMapWarepper;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

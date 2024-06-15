@@ -10,19 +10,32 @@ import Combine
 import CoreModel
 
 protocol AnyWeatherWorker {
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error>
+    func fetchWeather(lat: String, lon: String) async throws -> WeatherResponse
 }
 
 final class WeatherWorker: AnyWeatherWorker {
-        
-    let offersURL = URL(string: "https://run.mocky.io/v3/214a1713-bac0-4853-907c-a1dfc3cd05fd")!
+    private let apiKey = "fb820d609024a14e9e095be95b4bd3db"
+    private let baseURL = "https://api.openweathermap.org/data/2.5/weather?"
     
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error> {
-//        URLSession.shared.dataTaskPublisher(for: offersURL)
-//            .map(\.data)
-//            .decode(type: OfferModel.self, decoder: JSONDecoder())
-//            .eraseToAnyPublisher()
-//    }
+    func fetchWeather(lat: String, lon: String) async throws -> WeatherResponse {
+        guard var urlComponents = URLComponents(string: baseURL) else {
+            throw URLError(.badURL)
+        }
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "lat", value: "\(lat)"),
+            URLQueryItem(name: "lon", value: "\(lon)"),
+            URLQueryItem(name: "appid", value: apiKey),
+            URLQueryItem(name: "units", value: "metric")
+        ]
+        
+        guard let url = urlComponents.url else {
+            throw URLError(.badURL)
+        }
+        
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let weatherResponse = try JSONDecoder().decode(WeatherResponse.self, from: data)
+        
+        return weatherResponse
+    }
 }
-
-
