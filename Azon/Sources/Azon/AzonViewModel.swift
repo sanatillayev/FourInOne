@@ -8,15 +8,18 @@
 import SwiftUI
 import Combine
 import CoreModel
+import SwiftData
 
 final class AzonViewModel: ObservableObject {
     
     // MARK: Public Properties
-    
     @Published var state = State()
     let action = PassthroughSubject<Action, Never>()
     
     // MARK: Private properties
+    @Environment(\.modelContext) var modelContext
+    @Query var prayers: [Prayer]
+    
     private let worker: AnyAzonWorker
     private var cancellables = Set<AnyCancellable>()
     
@@ -34,8 +37,8 @@ final class AzonViewModel: ObservableObject {
     // MARK: Private Methods
     private func didChange(_ action: Action) {
         switch action {
-        case .fetchData:
-            break
+        case .fetchAzon:
+            fetchAzon()
         case .requestNotification:
             requestAuth()
         case .scheduleNotification:
@@ -43,11 +46,29 @@ final class AzonViewModel: ObservableObject {
         }
     }
     
-    private func scheduleNotifications() {
-        if !state.didSetNotification {
-            for i in state.times.indices {
-                NotificationManager.shared.scheduleNotification(at: state.times[i], title: state.names[i], body: "\(state.times[i].toString()) It's time for prayer.")
+    private func fetchAzon() {
+        Task.detached(priority: .high) { @MainActor [unowned self] in
+            state.isLoading = true
+            do {
+                let response = try await worker.fetchAzon(year: state.currentYear,
+                                                          month: state.currentMonth)
+                state.prayers = response.data
+                state.todayPrayer = response.data[state.currentDay - 1]
+                state.isLoading = false
+            } catch {
+                print(error)
+                state.isLoading = false
             }
+        }
+    }
+    
+    private func scheduleNotifications() {
+        if !state.didSetNotification, let timing = state.todayPrayer?.timings {
+            NotificationManager.shared.scheduleNotification(at: timing.Fajr.toDateComponents(), title: "Fajr", body: "Its prayer time")
+            NotificationManager.shared.scheduleNotification(at: timing.Dhuhr.toDateComponents(), title: "Dhuhr", body: "Its prayer time")
+            NotificationManager.shared.scheduleNotification(at: timing.Asr.toDateComponents(), title: "Asr", body: "Its prayer time")
+            NotificationManager.shared.scheduleNotification(at: timing.Maghrib.toDateComponents(), title: "Maghrib", body: "Its prayer time")
+            NotificationManager.shared.scheduleNotification(at: timing.Isha.toDateComponents(), title: "Isha", body: "Its prayer time")
             state.didSetNotification = true
             saveNotificationState()
         }
@@ -69,12 +90,10 @@ final class AzonViewModel: ObservableObject {
 ///      And add your notification time below inside `State` in `var times: [DateComponents]`
 ///      Note that when you uncomment this section the notificaions might be duplicated several times
     private func loadNotificationState() {
-        UserDefaults.standard.removeObject(forKey: "didSetNotification")
-        UserDefaults.standard.removeObject(forKey: "didAuthNotification")
+        UserDefaults.standard.removeObject(forKey: "didSetNotificatio")
+        UserDefaults.standard.removeObject(forKey: "didAuthNotificatio")
         state.didAuthNotification = UserDefaults.standard.bool(forKey: state.authKey)
         state.didSetNotification = UserDefaults.standard.bool(forKey: state.setKey)
-        
-        //state.didSetNotification = false
     }
 }
 
@@ -83,7 +102,7 @@ final class AzonViewModel: ObservableObject {
 extension AzonViewModel {
     
     enum Action {
-        case fetchData
+        case fetchAzon
         case requestNotification
         case scheduleNotification
     }
@@ -92,26 +111,41 @@ extension AzonViewModel {
         var isLoading = false
         var didSetNotification = false
         var didAuthNotification = false
-        let setKey = "didSetNotificatio"
-        let authKey = "didAuthNotificatio"
-        var times: [DateComponents] = [
-            DateComponents(hour: 5, minute: 0),
-            DateComponents(hour: 13, minute: 0),
-            DateComponents(hour: 16, minute: 35),
-            DateComponents(hour: 16, minute: 40),
-            DateComponents(hour: 16, minute: 45)
-        ]
-        let names: [String] = ["Fajr","Dhuhr","Asr","Maghrib","Isha"]
+        let setKey = "didSetNotification"
+        let authKey = "didAuthNotification"
+        var prayers: [Prayer] = []
+        var todayPrayer: Prayer?
+        let currentDay = Calendar.current.component(.day, from: Date())
+        let currentMonth: String = String(Calendar.current.component(.month, from: Date()))
+        let currentYear: String = String(Calendar.current.component(.year, from: Date()))
     }
 }
 
-extension DateComponents {
-    func toString() -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "HH:mm"
-        var calendar = Calendar.current
-        calendar.timeZone = TimeZone.current
-        let date = calendar.date(from: self) ?? Date()
-        return formatter.string(from: date)
+extension String {
+    func toDateComponents() -> DateComponents {
+        let pattern = #"(\d{2}):(\d{2})\(\+\d{2}\)"#
+        let regex = try! NSRegularExpression(pattern: pattern, options: [])
+
+        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
+        
+        guard let match = matches.first else {
+            return DateComponents()
+        }
+        
+        let hourRange = Range(match.range(at: 1), in: self)
+        let minuteRange = Range(match.range(at: 2), in: self)
+        
+        guard let hourString = hourRange.flatMap({ String(self[$0]) }),
+              let minuteString = minuteRange.flatMap({ String(self[$0]) }),
+              let hour = Int(hourString),
+              let minute = Int(minuteString) else {
+            return DateComponents()
+        }
+
+        var dateComponents = DateComponents()
+        dateComponents.hour = hour
+        dateComponents.minute = minute
+        
+        return dateComponents
     }
 }

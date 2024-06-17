@@ -16,36 +16,29 @@ private enum Constants {
 }
 
 public struct AzonView: View {
-    
     @StateObject var viewModel: AzonViewModel
     @StateObject var coordinator: AzonCoordinator
-
-    public var body: some View {
-            VStack(spacing: 16){
-                Text("Azon is here")
-                prayerTimesView
-            }
-            .onAppear(perform: {
-                viewModel.action.send(.requestNotification)
-                viewModel.action.send(.scheduleNotification)
-            })
-    }
     
-    private var prayerTimesView: some View {
-        ForEach(0..<5) { index in
-            HStack {
-                Text(viewModel.state.names[index])
-                    .font(Constants.Title.font)
-                    .foregroundStyle(Constants.Title.color)
-                Spacer()
-                Text(viewModel.state.times[index].toString())
-                    .font(Constants.Title.font)
-                    .foregroundStyle(Constants.Title.color)
+    public var body: some View {
+        VStack(spacing: 16){
+            ForEach(viewModel.state.prayers, id: \.date.readable) { model in
+                if Int(model.date.gregorian.day) == viewModel.state.currentDay {
+                    Text(model.date.readable)
+                        .font(Constants.Title.font)
+                        .foregroundStyle(Constants.Title.color)
+                    SinglePrayerTimeView(model: model.timings)
+                }
             }
-            .padding(.all)
-            .background(.regularMaterial)
-            .cornerRadius(8)
         }
-        .padding(.horizontal, 16)
+        .overlay {
+            if viewModel.state.isLoading || viewModel.state.prayers.isEmpty {
+                LoadingView(text: "Loading...")
+            }
+        }
+        .onAppear(perform: {
+            viewModel.action.send(.fetchAzon)
+            viewModel.action.send(.requestNotification)
+            viewModel.action.send(.scheduleNotification)
+        })
     }
 }

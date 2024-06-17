@@ -38,7 +38,7 @@ public struct WeatherView: View {
             locationManager.currentUserLocation()
             viewModel.bind(to: locationManager)
         }
-        
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     @ViewBuilder

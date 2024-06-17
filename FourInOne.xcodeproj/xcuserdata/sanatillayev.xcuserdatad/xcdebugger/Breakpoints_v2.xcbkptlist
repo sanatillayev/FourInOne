@@ -7,79 +7,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "2EED236B-DEBC-416E-95E1-03BE42517CCE"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Azon/Sources/Azon/NotificationManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
-            landmarkName = "scheduleNotification(at:title:body:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "2EED236B-DEBC-416E-95E1-03BE42517CCE - c1ec19a48a7eac20"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Azon.NotificationManager.scheduleNotification(at: Foundation.DateComponents, title: Swift.String, body: Swift.String) -&gt; ()"
-                  moduleName = "FourInOne"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sanatillayev/Desktop/iOS/fourInOne/FourInOne/Azon/Sources/Azon/NotificationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "39"
-                  endingLineNumber = "39"
-                  offsetFromSymbolStart = "160">
-               </Location>
-               <Location
-                  uuid = "2EED236B-DEBC-416E-95E1-03BE42517CCE - c1ec19a48a7eac01"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Azon.NotificationManager.scheduleNotification(at: Foundation.DateComponents, title: Swift.String, body: Swift.String) -&gt; ()"
-                  moduleName = "FourInOne"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/sanatillayev/Desktop/iOS/fourInOne/FourInOne/Azon/Sources/Azon/NotificationManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "40"
-                  endingLineNumber = "40"
-                  offsetFromSymbolStart = "160">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "481FD047-168F-4999-8295-48677463002A"
+            uuid = "203B0BF3-343C-4776-B389-75D8D7A774F5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Azon/Sources/Azon/AzonViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "60"
-            endingLineNumber = "60"
-            landmarkName = "requestAuth()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A9C6492A-FEF6-47D6-8283-C9DAC5652C5B"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Azon/Sources/Azon/AzonViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
             landmarkName = "scheduleNotifications()"
             landmarkType = "7">
          </BreakpointContent>

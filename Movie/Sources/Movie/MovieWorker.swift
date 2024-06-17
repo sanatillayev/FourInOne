@@ -10,19 +10,34 @@ import Combine
 import CoreModel
 
 protocol AnyMovieWorker {
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error>
+    func fetchMovies(page: Int, search: String) async throws -> MovieResponse
 }
 
 final class MovieWorker: AnyMovieWorker {
-        
-    let offersURL = URL(string: "https://run.mocky.io/v3/214a1713-bac0-4853-907c-a1dfc3cd05fd")!
+    private let apiKey = "f1bfcaeb"
+    private let baseURL = "https://www.omdbapi.com/"
+    private let search = "Batman"
     
-//    func fetchOffers() -> AnyPublisher<OfferModel, Error> {
-//        URLSession.shared.dataTaskPublisher(for: offersURL)
-//            .map(\.data)
-//            .decode(type: OfferModel.self, decoder: JSONDecoder())
-//            .eraseToAnyPublisher()
-//    }
+    func fetchMovies(page: Int, search: String) async throws -> MovieResponse {
+        guard var urlComponents = URLComponents(string: baseURL) else {
+            throw URLError(.badURL)
+        }
+        
+        urlComponents.queryItems = [
+            URLQueryItem(name: "s", value: search),
+            URLQueryItem(name: "apiKey", value: apiKey),
+            URLQueryItem(name: "page", value: "\(page)")
+        ]
+        
+        guard let url = urlComponents.url else {
+            throw URLError(.badURL)
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let moviesResponse = try JSONDecoder().decode(MovieResponse.self, from: data)
+        
+        return moviesResponse
+    }
 }
 
 

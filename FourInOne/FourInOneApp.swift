@@ -5,7 +5,9 @@
 //  Created by Bilol Sanatillayev on 09/06/24.
 //
 
+import SwiftData
 import SwiftUI
+import Azon
 
 @main
 struct FourInOneApp: App {
@@ -16,5 +18,6 @@ struct FourInOneApp: App {
                 MainBuilder.createMainView(selectedTabSection: .azon)
             }
         }
+//        .modelContainer(for: PrayerData.self)
     }
 }

@@ -40,6 +40,7 @@ public struct NewsView: View {
                     }
             }
         }
+        .toolbar(.hidden, for: .navigationBar)
     }
     
     @ViewBuilder

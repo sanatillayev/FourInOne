@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0442AA452C1DB140006953D9 /* azanShort.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 0442AA442C1DB140006953D9 /* azanShort.m4a */; };
 		047D6C872C15D461005E4154 /* FourInOneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047D6C862C15D461005E4154 /* FourInOneApp.swift */; };
 		047D6C8B2C15D463005E4154 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8A2C15D463005E4154 /* Assets.xcassets */; };
 		047D6C8E2C15D464005E4154 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 047D6C8D2C15D464005E4154 /* Preview Assets.xcassets */; };
@@ -27,7 +26,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0442AA442C1DB140006953D9 /* azanShort.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = azanShort.m4a; sourceTree = "<group>"; };
 		047D6C832C15D461005E4154 /* FourInOne.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FourInOne.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		047D6C862C15D461005E4154 /* FourInOneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourInOneApp.swift; sourceTree = "<group>"; };
 		047D6C8A2C15D463005E4154 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,7 +88,6 @@
 			children = (
 				047D6C862C15D461005E4154 /* FourInOneApp.swift */,
 				048E16C42C15D63B007CED04 /* Main */,
-				0442AA442C1DB140006953D9 /* azanShort.m4a */,
 				047D6C8A2C15D463005E4154 /* Assets.xcassets */,
 				047D6C8C2C15D464005E4154 /* Preview Content */,
 			);
@@ -218,7 +215,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				047D6C8E2C15D464005E4154 /* Preview Assets.xcassets in Resources */,
-				0442AA452C1DB140006953D9 /* azanShort.m4a in Resources */,
 				047D6C8B2C15D463005E4154 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,9 +373,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -410,9 +406,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
