@@ -32,7 +32,7 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         content.sound = UNNotificationSound(named: UNNotificationSoundName("azanShort.m4a"))
         content.sound = .default
         
-        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
         
         UNUserNotificationCenter.current().add(request) { error in
@@ -45,6 +45,6 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        completionHandler([.banner, .sound])
+        completionHandler([.banner, .sound, .list, .badge])
     }
 }

@@ -26,7 +26,7 @@ extension String {
 
 
 extension String {
-    func toDateComponents() -> DateComponents {
+    func toDateComponents(date: Gregorian) -> DateComponents {
         let pattern = #"(\d{2}):(\d{2})\(\+\d{2}\)"#
         let regex = try! NSRegularExpression(pattern: pattern, options: [])
 
@@ -49,6 +49,9 @@ extension String {
         var dateComponents = DateComponents()
         dateComponents.hour = hour
         dateComponents.minute = minute
+        dateComponents.day = Int(date.day) ?? 0
+        dateComponents.month = date.month.number
+        dateComponents.year = Int(date.year) ?? 0
         
         return dateComponents
     }
