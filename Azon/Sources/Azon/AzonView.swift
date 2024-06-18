@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Component
+import SwiftData
 
 private enum Constants {
     enum Title {
@@ -16,29 +17,47 @@ private enum Constants {
 }
 
 public struct AzonView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query private var prayers: [PrayerData]
+
     @StateObject var viewModel: AzonViewModel
     @StateObject var coordinator: AzonCoordinator
     
     public var body: some View {
-        VStack(spacing: 16){
-            ForEach(viewModel.state.prayers, id: \.date.readable) { model in
-                if Int(model.date.gregorian.day) == viewModel.state.currentDay {
-                    Text(model.date.readable)
+        VStack(spacing: 16) {
+            ForEach(prayers, id: \.id) { model in
+                if model.date.extractDay() == viewModel.state.currentDay {
+                    Text(model.date)
                         .font(Constants.Title.font)
                         .foregroundStyle(Constants.Title.color)
-                    SinglePrayerTimeView(model: model.timings)
+                    SinglePrayerTimeView(model: Timing(Fajr: model.fajr, Sunrise: model.sunrise, Dhuhr: model.dhuhr, Asr: model.asr, Maghrib: model.maghrib, Isha: model.isha))
                 }
             }
         }
         .overlay {
-            if viewModel.state.isLoading || viewModel.state.prayers.isEmpty {
+            if viewModel.state.isLoading || prayers.isEmpty {
                 LoadingView(text: "Loading...")
             }
         }
-        .onAppear(perform: {
+        .refreshable {
             viewModel.action.send(.fetchAzon)
+        }
+        .onAppear(perform: {
+            if prayers.isEmpty {
+                viewModel.action.send(.fetchAzon)
+                saveData()
+            }
             viewModel.action.send(.requestNotification)
             viewModel.action.send(.scheduleNotification)
         })
+    }
+    
+    private func saveData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            for prayer in viewModel.state.prayers {
+                let itemToStore = PrayerData(model: prayer)
+                modelContext.insert(itemToStore)
+            }
+        }
     }
 }

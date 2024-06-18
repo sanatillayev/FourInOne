@@ -96,10 +96,3 @@ struct SinglePrayerTimeView: View {
         .padding(.horizontal, 16)
     }
 }
-
-extension String {
-    func extractTime() -> String {
-        guard self.count >= 5 else { return self }
-        return String(self.prefix(5))
-    }
-}

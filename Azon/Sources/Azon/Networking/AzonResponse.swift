@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  AzonResponse.swift
 //  
 //
 //  Created by Bilol Sanatillayev on 16/06/24.
@@ -13,9 +13,9 @@ struct AzonResponse: Decodable {
     let data: [Prayer]
 }
 
-struct Prayer: Decodable {
-    let timings: Timing
-    let date: DateModel
+public struct Prayer: Decodable {
+    public let timings: Timing
+    public let date: DateModel
 }
 
 public struct Timing: Decodable {
@@ -45,16 +45,3 @@ public struct Month: Decodable {
     public let en: String
 }
 
-import SwiftData
-
-@Model
-public class PrayerData {
-    public let id = UUID()
-    public let timings: Timing
-    public let date: DateModel
-    
-    init(timings: Timing, date: DateModel) {
-        self.timings = timings
-        self.date = date
-    }
-}

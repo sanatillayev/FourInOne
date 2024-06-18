@@ -18,6 +18,6 @@ struct FourInOneApp: App {
                 MainBuilder.createMainView(selectedTabSection: .azon)
             }
         }
-//        .modelContainer(for: PrayerData.self)
+        .modelContainer(for: PrayerData.self)
     }
 }

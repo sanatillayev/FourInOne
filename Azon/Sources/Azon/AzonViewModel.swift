@@ -16,9 +16,10 @@ final class AzonViewModel: ObservableObject {
     @Published var state = State()
     let action = PassthroughSubject<Action, Never>()
     
+//    @Environment(\.modelContext) var modelContext
+//    @Query var prayers: [PrayerData]
+
     // MARK: Private properties
-    @Environment(\.modelContext) var modelContext
-    @Query var prayers: [Prayer]
     
     private let worker: AnyAzonWorker
     private var cancellables = Set<AnyCancellable>()
@@ -118,34 +119,5 @@ extension AzonViewModel {
         let currentDay = Calendar.current.component(.day, from: Date())
         let currentMonth: String = String(Calendar.current.component(.month, from: Date()))
         let currentYear: String = String(Calendar.current.component(.year, from: Date()))
-    }
-}
-
-extension String {
-    func toDateComponents() -> DateComponents {
-        let pattern = #"(\d{2}):(\d{2})\(\+\d{2}\)"#
-        let regex = try! NSRegularExpression(pattern: pattern, options: [])
-
-        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
-        
-        guard let match = matches.first else {
-            return DateComponents()
-        }
-        
-        let hourRange = Range(match.range(at: 1), in: self)
-        let minuteRange = Range(match.range(at: 2), in: self)
-        
-        guard let hourString = hourRange.flatMap({ String(self[$0]) }),
-              let minuteString = minuteRange.flatMap({ String(self[$0]) }),
-              let hour = Int(hourString),
-              let minute = Int(minuteString) else {
-            return DateComponents()
-        }
-
-        var dateComponents = DateComponents()
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        
-        return dateComponents
     }
 }
