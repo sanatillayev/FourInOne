@@ -52,10 +52,8 @@ public struct AzonView: View {
                 LoadingView(text: "Loading...")
             }
         }
-        .refreshable {
-
-        }
         .onAppear(perform: {
+            viewModel.action.send(.requestNotification)
             if prayers.isEmpty {
                 viewModel.action.send(.fetchAzon)
                 saveData()
@@ -63,13 +61,11 @@ public struct AzonView: View {
                 viewModel.action.send(.fetchAzon)
                 saveData()
             }
-            viewModel.action.send(.requestNotification)
-            viewModel.action.send(.scheduleNotification)
         })
     }
     
     private func saveData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             for item in viewModel.state.prayers {
                 modelContext.insert( PrayerData(model: item))
             }

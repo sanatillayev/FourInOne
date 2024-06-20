@@ -37,37 +37,45 @@ final class AzonViewModel: ObservableObject {
             fetchAzon()
         case .requestNotification:
             requestAuth()
-        case .scheduleNotification:
-            scheduleNotifications()
         }
     }
     
     private func fetchAzon() {
-        Task.detached(priority: .high) { @MainActor [unowned self] in
-            state.isLoading = true
+        Task {
+            DispatchQueue.main.async {
+                self.state.isLoading = true
+            }
             do {
-                let response = try await worker.fetchAzon(year: state.currentYear,
-                                                          month: state.currentMonth)
-                state.prayers = response.data
-                state.isLoading = false
+                let response = try await worker.fetchAzon(year: state.currentYear, month: state.currentMonth)
+                DispatchQueue.main.async {
+                    self.state.prayers = response.data
+                    self.state.isLoading = false
+                    self.scheduleNotifications()
+                }
             } catch {
-                print(error)
-                state.isLoading = false
+                DispatchQueue.main.async {
+                    print(error)
+                    self.state.isLoading = false
+                }
             }
         }
     }
     
-    private func scheduleNotifications() {
-        if !state.didSetNotification {
-            for prayer in state.prayers {
-                NotificationManager.shared.scheduleNotification(at: prayer.timings.Fajr.toDateComponents(date: prayer.date.gregorian),title: "Fajr", body: "Its prayer time")
-                NotificationManager.shared.scheduleNotification(at: prayer.timings.Dhuhr.toDateComponents(date: prayer.date.gregorian), title: "Dhuhr", body: "Its prayer time")
-                NotificationManager.shared.scheduleNotification(at: prayer.timings.Asr.toDateComponents(date: prayer.date.gregorian), title: "Asr", body: "Its prayer time")
-                NotificationManager.shared.scheduleNotification(at: prayer.timings.Maghrib.toDateComponents(date: prayer.date.gregorian), title: "Maghrib", body: "Its prayer time")
-                NotificationManager.shared.scheduleNotification(at: prayer.timings.Isha.toDateComponents(date: prayer.date.gregorian), title: "Isha", body: "Its prayer time")
+    func scheduleNotifications() {
+        Task {
+            if !state.didSetNotification {
+                for prayer in state.prayers {
+                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Fajr.toDateComponents(date: prayer.date.gregorian), title: "Fajr", body: "It's prayer time")
+                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Dhuhr.toDateComponents(date: prayer.date.gregorian), title: "Dhuhr", body: "It's prayer time")
+                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Asr.toDateComponents(date: prayer.date.gregorian), title: "Asr", body: "It's prayer time")
+                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Maghrib.toDateComponents(date: prayer.date.gregorian), title: "Maghrib", body: "It's prayer time")
+                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Isha.toDateComponents(date: prayer.date.gregorian), title: "Isha", body: "It's prayer time")
+                }
+                DispatchQueue.main.async {
+                    self.state.didSetNotification = true
+                    self.saveNotificationState()
+                }
             }
-            state.didSetNotification = true
-            saveNotificationState()
         }
     }
     
@@ -99,7 +107,6 @@ extension AzonViewModel {
     enum Action {
         case fetchAzon
         case requestNotification
-        case scheduleNotification
     }
     
     struct State {
