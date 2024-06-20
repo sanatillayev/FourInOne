@@ -26,32 +26,21 @@ extension String {
 
 
 extension String {
-    func toDateComponents(date: Gregorian) -> DateComponents {
-        let pattern = #"(\d{2}):(\d{2})\(\+\d{2}\)"#
-        let regex = try! NSRegularExpression(pattern: pattern, options: [])
-
-        let matches = regex.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
-        
-        guard let match = matches.first else {
-            return DateComponents()
-        }
-        
-        let hourRange = Range(match.range(at: 1), in: self)
-        let minuteRange = Range(match.range(at: 2), in: self)
-        
-        guard let hourString = hourRange.flatMap({ String(self[$0]) }),
-              let minuteString = minuteRange.flatMap({ String(self[$0]) }),
-              let hour = Int(hourString),
-              let minute = Int(minuteString) else {
-            return DateComponents()
-        }
-
+    func toDateComponents() -> DateComponents {
         var dateComponents = DateComponents()
-        dateComponents.hour = hour
-        dateComponents.minute = minute
-        dateComponents.day = Int(date.day) ?? 0
-        dateComponents.month = date.month.number
-        dateComponents.year = Int(date.year) ?? 0
+        
+        if let hour = Int(self.prefix(2)) {
+            dateComponents.hour = hour
+        }
+        
+        if let range = self.range(of: ":") {
+            let minuteStartIndex = self.index(after: range.lowerBound)
+            let minuteSubstring = self[minuteStartIndex...]
+            
+            if let minute = Int(minuteSubstring.prefix(2)) {
+                dateComponents.minute = minute
+            }
+        }
         
         return dateComponents
     }

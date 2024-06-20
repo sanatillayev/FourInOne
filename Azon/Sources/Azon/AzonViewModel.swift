@@ -37,6 +37,8 @@ final class AzonViewModel: ObservableObject {
             fetchAzon()
         case .requestNotification:
             requestAuth()
+        case .checkPendingNotifications:
+            checkPendingNotifications()
         }
     }
     
@@ -61,15 +63,18 @@ final class AzonViewModel: ObservableObject {
         }
     }
     
-    func scheduleNotifications() {
+    private func scheduleNotifications() {
         Task {
             if !state.didSetNotification {
                 for prayer in state.prayers {
-                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Fajr.toDateComponents(date: prayer.date.gregorian), title: "Fajr", body: "It's prayer time")
-                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Dhuhr.toDateComponents(date: prayer.date.gregorian), title: "Dhuhr", body: "It's prayer time")
-                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Asr.toDateComponents(date: prayer.date.gregorian), title: "Asr", body: "It's prayer time")
-                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Maghrib.toDateComponents(date: prayer.date.gregorian), title: "Maghrib", body: "It's prayer time")
-                    NotificationManager.shared.scheduleNotification(at: prayer.timings.Isha.toDateComponents(date: prayer.date.gregorian), title: "Isha", body: "It's prayer time")
+                    if prayer.date.gregorian.day == String(state.currentDay) {
+                        NotificationManager.shared.scheduleNotification(at: DateComponents(hour: 16, minute: 52), title: "Test")
+                        NotificationManager.shared.scheduleNotification(at: prayer.timings.Fajr.toDateComponents(), title: "Fajr")
+                        NotificationManager.shared.scheduleNotification(at: prayer.timings.Dhuhr.toDateComponents(), title: "Dhuhr")
+                        NotificationManager.shared.scheduleNotification(at: prayer.timings.Asr.toDateComponents(), title: "Asr")
+                        NotificationManager.shared.scheduleNotification(at: prayer.timings.Maghrib.toDateComponents(), title: "Maghrib")
+                        NotificationManager.shared.scheduleNotification(at: prayer.timings.Isha.toDateComponents(), title: "Isha")
+                    }
                 }
                 DispatchQueue.main.async {
                     self.state.didSetNotification = true
@@ -98,6 +103,19 @@ final class AzonViewModel: ObservableObject {
         state.didAuthNotification = UserDefaults.standard.bool(forKey: state.authKey)
         state.didSetNotification = UserDefaults.standard.bool(forKey: state.setKey)
     }
+    
+    private func checkPendingNotifications() {
+        NotificationManager.shared.getPendingNotifications { requests in
+            for request in requests {
+                print("Notification ID: \(request.identifier)")
+                print("Title: \(request.content.title)")
+                print("Body: \(request.content.body)")
+                if let trigger = request.trigger as? UNCalendarNotificationTrigger {
+                    print("Date: \(trigger.dateComponents)")
+                }
+            }
+        }
+    }
 }
 
 // MARK: - ViewModel Actions & State
@@ -107,14 +125,15 @@ extension AzonViewModel {
     enum Action {
         case fetchAzon
         case requestNotification
+        case checkPendingNotifications
     }
     
     struct State {
         var isLoading = false
         var didSetNotification = false
         var didAuthNotification = false
-        let setKey = "didSetNotification"
-        let authKey = "didAuthNotification"
+        let setKey = "didSetNotif"
+        let authKey = "didAuthNotif"
         var prayers: [Prayer] = []
         let currentDay = Calendar.current.component(.day, from: Date())
         let currentMonth: String = String(Calendar.current.component(.month, from: Date()))

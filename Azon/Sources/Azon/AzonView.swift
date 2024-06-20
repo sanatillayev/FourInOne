@@ -47,6 +47,9 @@ public struct AzonView: View {
                 }
             }
         }
+        .refreshable {
+            viewModel.action.send(.checkPendingNotifications)
+        }
         .overlay {
             if viewModel.state.isLoading || (prayers.isEmpty && viewModel.state.prayers.isEmpty) {
                 LoadingView(text: "Loading...")

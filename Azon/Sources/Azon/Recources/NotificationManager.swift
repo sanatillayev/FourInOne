@@ -25,12 +25,11 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
-    func scheduleNotification(at dateComponents: DateComponents, title: String, body: String) {
+    func scheduleNotification(at dateComponents: DateComponents, title: String) {
         let content = UNMutableNotificationContent()
         content.title = title
-        content.body = body
+        content.body = "It's prayer time"
         content.sound = UNNotificationSound(named: UNNotificationSoundName("azanShort.m4a"))
-        content.sound = .default
         
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
         let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger)
@@ -42,9 +41,16 @@ class NotificationManager: NSObject, UNUserNotificationCenterDelegate {
         }
     }
     
+    
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler([.banner, .sound, .list, .badge])
+    }
+    
+    func getPendingNotifications(completion: @escaping ([UNNotificationRequest]) -> Void) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            completion(requests)
+        }
     }
 }
