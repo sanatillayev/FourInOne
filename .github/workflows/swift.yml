@@ -1,0 +1,29 @@
+# This workflow will build a Swift project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-swift
+
+name: Swift CI
+
+on:
+  push:
+    branches: [ "develop" ]  # Trigger the workflow on pushes to main and develop branches
+  pull_request:
+    branches: [ "develop" ]  # Trigger the workflow on pull requests to main and develop branches
+
+jobs:
+  build:
+
+    runs-on: macos-latest  # Use the latest macOS runner
+
+    steps:
+    - uses: actions/checkout@v4  # Checkout the repository code
+
+    - name: Set up Xcode
+      uses: maxim-lobanov/setup-xcode@v2  # Set up Xcode
+      with:
+        xcode-version: '14.2'  # Specify the version of Xcode to use
+
+    - name: Build
+      run: xcodebuild -scheme FourInOne -destination 'platform=iOS Simulator,name=iPhone 11' build  # Build the project using the FourInOne scheme
+
+    - name: Run tests
+      run: xcodebuild test -scheme FourInOne -destination 'platform=iOS Simulator,name=iPhone 11'  # Run tests for the project using the FourInOne scheme
